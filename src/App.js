@@ -1,7 +1,7 @@
 import './App.css';
 import {useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {loginAction} from "./redux/action"
+import {loginAction, logoutAction} from "./redux/action"
 
 function App() {
 
@@ -18,6 +18,7 @@ function App() {
           <div>
             <p>Welcome</p>
             <p>Phone: {auth.phone}</p>
+            <button onClick={() => dispatch(logoutAction())}>Logout</button>
           </div>
       )
 
