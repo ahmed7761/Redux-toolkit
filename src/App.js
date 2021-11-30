@@ -1,36 +1,15 @@
 import './App.css';
-import {useState} from "react";
-import {useDispatch, useSelector} from "react-redux";
-import {loginAction, logoutAction} from "./redux/action"
+import Auth from './Component/Auth'
+import BasePage from './Component/BasePage'
+import React from "react";
+import {useSelector} from "react-redux";
 
 function App() {
-
-  const [phone, setPhone] = useState("");
-
-  const dispatch = useDispatch();
   const auth = useSelector(state => state.auth);
-
-  console.log(auth);
 
   return (
     <div className="App">
-      {auth.isAuth ? (
-          <div>
-            <p>Welcome</p>
-            <p>Phone: {auth.phone}</p>
-            <button onClick={() => dispatch(logoutAction())}>Logout</button>
-          </div>
-      )
-
-      : (
-          <div>
-            <h3>Login</h3>
-            <input name="phone" type="text" value={phone} onChange={e => setPhone(e.target.value)} placeholder="Enter phone" />
-            <button onClick={() => dispatch(loginAction(phone))}>Login</button>
-          </div>
-      )
-
-      }
+      {auth.isAuth ? <BasePage /> : <Auth />}
     </div>
   );
 }
