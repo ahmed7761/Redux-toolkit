@@ -1,23 +1,19 @@
-import logo from './logo.svg';
 import './App.css';
+import {useState} from "react";
+import {useDispatch} from "react-redux";
+import {loginAction} from "./redux/action"
 
 function App() {
+
+  const [phone, setPhone] = useState("");
+
+  const dispatch = useDispatch();
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h3>Login</h3>
+      <input name="phone" type="text" value={phone} onChange={e => setPhone(e.target.value)} placeholder="Enter phone" />
+      <button onClick={() => dispatch(loginAction(phone))}>Login</button>
     </div>
   );
 }
